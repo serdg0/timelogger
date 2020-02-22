@@ -22,12 +22,12 @@ class SigninForm extends Component {
 
     loginHandler() {
         const { email, password } = this.state;
-        const { login } = this.props;
+        const { login, tokenize } = this.props;
         axios.post('http://localhost:3001/auth/login', {withCredentials: true,
         email: email, password: password})
             .then(response => {
-                console.log(response)
                 login(true);
+                tokenize(response.data.auth_token);
                 this.setState({logged:true})
             }).catch(error => console.log(error));
     }
