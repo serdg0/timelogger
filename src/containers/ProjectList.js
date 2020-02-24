@@ -5,23 +5,30 @@ import axios from 'axios';
 class ProjectList extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            projects: []
+        }
     }
 
-    componentDidMount() {
-        if (this.props.logged) {
-            axios.get('http://localhost:3001/todos')
+    componentDidUpdate(prevProps) {
+        const { token, projects } = this.props;
+        if (projects !== prevProps.projects) {
+            axios.get('http://localhost:3001/todos', { headers: {Authorization: token}})
             .then(response => {
-                console.log(response)
-            })
+              console.log(response);
+              this.setState({
+                  projects: response,
+              })
+            }).catch(error => console.log(error));
         }
-
     }
 
     render() {
-        const { logged } = this.props;
+        const { logged, projects } = this.props;
+        const display = projects.map(proj => <Project obj={proj} />)
         return (
             <table>
-                {logged}
+                {logged && display}
             </table>
         )
     }

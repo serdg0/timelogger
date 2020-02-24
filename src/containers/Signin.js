@@ -7,7 +7,6 @@ class SigninForm extends Component {
         this.state = {
             email: '',
             password: '',
-            logged: false,
         }
         this.changeHandler = this.changeHandler.bind(this);
         this.loginHandler = this.loginHandler.bind(this);
@@ -28,7 +27,6 @@ class SigninForm extends Component {
             .then(response => {
                 login(true);
                 tokenize(response.data.auth_token);
-                this.setState({logged:true})
             }).catch(error => console.log(error));
     }
 
