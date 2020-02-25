@@ -2,21 +2,32 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import logger from 'redux-logger';
+import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import rootReducer from '../reducers/index';
 import ProjectList from '../containers/ProjectList';
 import SigninForm from '../containers/Signin';
 import SignupForm from '../containers/Signup';
-import { loginAction, setAuthAction, addProjectAction, removeProjectAction } from '../actions/index';
+import ProjectForm from '../containers/ProjectForm';
+import { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction } from '../actions/index';
 
 
 const App = props => {
-  const { token, logged, projects, setAuthAction, loginAction, addProjectAction, removeProjectAction } = props;
+  const { token, logged, projects, setAuthAction, loginAction, addProjectAction, removeProjectAction, getProjectsAction } = props;
   return (
+    <Router>
     <div>
-      <SigninForm login={loginAction} tokenize={setAuthAction} />
-      <SignupForm login={loginAction} tokenize={setAuthAction} />
+      <SigninForm login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} />
+      <Link to="/signup">Sign Up</Link>
+      <ProjectForm add={addProjectAction} token={token} />
       <ProjectList logged={logged} token={token} projects={projects} />
+
+      <Switch>
+        <Route path="/signup">
+          <SignupForm login={loginAction} tokenize={setAuthAction} />
+        </Route>
+      </Switch>
     </div>
+    </Router>
   );
 }
 
@@ -27,7 +38,7 @@ const mapStateToProps = state =>({
   token: state.token,
 })
 const store = createStore(rootReducer, applyMiddleware(logger));
-const Container = connect(mapStateToProps, {loginAction, setAuthAction, addProjectAction, removeProjectAction})(App);
+const Container = connect(mapStateToProps, {loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction})(App);
 
 const AppWrap = () => {
   return (

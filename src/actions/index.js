@@ -2,6 +2,7 @@ const LOGIN = 'LOGIN';
 const SET = 'SET';
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
+const RETRIEVE = 'RETRIEVE';
 
 const loginAction = status => ({
     type: LOGIN,
@@ -23,4 +24,9 @@ const removeProjectAction = project => ({
     project,
 })
 
-export { loginAction, setAuthAction, addProjectAction, removeProjectAction };
+const getProjectsAction = projects => ({
+    type: RETRIEVE,
+    projects,
+})
+
+export { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction };

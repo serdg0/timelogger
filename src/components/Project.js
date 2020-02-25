@@ -1,13 +1,12 @@
 import React from 'react';
 
 const Project = props => {
-    const { project: {date, time, name} } = props;
+    const { proj: {title, created_at} } = props;
 
     return(
         <tr>
-            <th>{date}</th>
-            <th>{time}</th>
-            <th>{name}</th>
+            <th>{title}</th>
+            <th>{created_at}</th>
         </tr>
     )
 }
