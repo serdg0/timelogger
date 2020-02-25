@@ -19,7 +19,7 @@ const App = props => {
       <SigninForm login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} />
       <Link to="/signup">Sign Up</Link>
       <ProjectForm add={addProjectAction} token={token} />
-      <ProjectList logged={logged} token={token} projects={projects} />
+      <ProjectList token={token} projects={projects} remove={removeProjectAction} />
 
       <Switch>
         <Route path="/signup">

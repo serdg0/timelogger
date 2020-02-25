@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Project from '../components/Project';
-import axios from 'axios';
-import { addProjectAction } from '../actions';
 
 class ProjectList extends Component {
     constructor(props){
@@ -9,8 +7,8 @@ class ProjectList extends Component {
     }
 
     render() {
-        const { logged, projects } = this.props;
-        const display = projects.map(proj => <Project key={proj.id} proj={proj} />)
+        const { remove, projects, token } = this.props;
+        const display = projects.map(proj => <Project key={proj.id} token={token} proj={proj} remove={remove} />)
         return (
             <table>
                 {display}
