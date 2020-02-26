@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ms from 'pretty-ms';
 import axios from 'axios';
+import { format } from 'date-fns';
 
 class Clock extends Component {
     constructor(props){
@@ -18,8 +19,7 @@ class Clock extends Component {
       }
 
       startTimer() {
-        let date = new Date();
-        date = date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getFullYear().toString();
+        let date = format(new Date(), 'PP');
         this.setState({
           time: this.state.time,
           start: Date.now() - this.state.time,
