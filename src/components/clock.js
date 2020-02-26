@@ -10,6 +10,7 @@ class Clock extends Component {
           isOn: false,
           start: 0,
           id: this.props.id,
+          date: '',
         }
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
@@ -17,10 +18,13 @@ class Clock extends Component {
       }
 
       startTimer() {
+        let date = new Date();
+        date = date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getFullYear().toString();
         this.setState({
           time: this.state.time,
           start: Date.now() - this.state.time,
-          isOn: true
+          isOn: true,
+          date: date
         })
         this.timer = setInterval(() => this.setState({
           time: Date.now() - this.state.start
@@ -33,15 +37,20 @@ class Clock extends Component {
       }
 
       doneToday() {
-          const toAction = ['id', 'time'];
-          const { clock } = this.props;
-          const filtered = Object.keys(this.state).filter(key => toAction.includes(key))
-          .reduce((obj, key) => {
-              obj[key] = this.state[key];
-              return obj;
-          }, {})
-          console.log(filtered)
-          clock(filtered);
+          const { clock, token, id } = this.props;
+          const { date, time } = this.state
+          if (date === '') { return false };
+          axios.post(`http://localhost:3001/todos/${id}/items`, null, { params: {time: time, date: date}, headers: {Authorization: token}})
+          .then(response => {
+            const { data: { items } } = response;
+            const time = items[items.length - 1].time;
+            const date = items[items.length - 1].date;
+            clock({
+              time: time,
+              date: date,
+              id: id,
+            });
+          }).catch(error => console.log(error));
       }
 
       render() {

@@ -4,9 +4,9 @@ import loginReducer from './login';
 import tokenReducer from './token';
 
 const rootReducer = combineReducers({
-    projects: ProjectsReducer,
-    logged: loginReducer,
-    token: tokenReducer,
-})
+  projects: ProjectsReducer,
+  logged: loginReducer,
+  token: tokenReducer,
+});
 
 export default rootReducer;

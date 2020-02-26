@@ -27,7 +27,6 @@ class SignupForm extends Component {
         axios.post('http://localhost:3001/signup', {withCredentials: true,
         name: name, email: email, password: password, password_confirmation: passwordConfirmation})
             .then(response => {
-                console.log(response);
                 login(true);
                 tokenize(response.data.auth_token);
             }).catch(error => console.log(error));
