@@ -7,8 +7,8 @@ class ProjectList extends Component {
     }
 
     render() {
-        const { remove, projects, token } = this.props;
-        const display = projects.map(proj => <Project key={proj.id} token={token} proj={proj} remove={remove} />)
+        const { remove, projects, token, clock } = this.props;
+        const display = projects.map(proj => <Project key={proj.id} clock={clock} token={token} proj={proj} remove={remove} />)
         return (
             <table>
                 {display}

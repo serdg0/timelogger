@@ -3,6 +3,7 @@ const SET = 'SET';
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
 const RETRIEVE = 'RETRIEVE';
+const ADDCLOCK = 'ADDCLOCK';
 
 const loginAction = status => ({
     type: LOGIN,
@@ -29,4 +30,9 @@ const getProjectsAction = projects => ({
     projects,
 })
 
-export { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction };
+const addClockToProject = clock => ({
+    type: ADDCLOCK,
+    clock
+})
+
+export { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject };
