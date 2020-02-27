@@ -32,13 +32,13 @@ class Clock extends Component {
       }
 
       stopTimer() {
-        this.setState({isOn: false})
-        clearInterval(this.timer)
+        this.setState({isOn: false});
+        clearInterval(this.timer);
       }
 
       doneToday() {
           const { clock, token, id } = this.props;
-          const { date, time } = this.state
+          const { date, time } = this.state;
           if (date === '') { return false };
           axios.post(`http://localhost:3001/todos/${id}/items`, null, { params: {time: time, date: date}, headers: {Authorization: token}})
           .then(response => {
@@ -51,26 +51,33 @@ class Clock extends Component {
               id: id,
             });
           }).catch(error => console.log(error));
+          this.setState({
+            time: 0,
+          })
       }
 
       render() {
-        let start = (this.state.time == 0) ?
+        const start = (this.state.time === 0) ?
           <button onClick={this.startTimer}>start</button> :
-          null
-        let stop = (this.state.time == 0 || !this.state.isOn) ?
+          null;
+        const stop = (this.state.time === 0 || !this.state.isOn) ?
           null :
-          <button onClick={this.stopTimer}>stop</button>
-        let resume = (this.state.time == 0 || this.state.isOn) ?
+          <button onClick={this.stopTimer}>stop</button>;
+        
+        const done = (this.state.time === 0 || this.state.isOn) ?
           null :
-          <button onClick={this.startTimer}>resume</button>
+          <button type="button" onClick={this.doneToday}>Done</button>;
+        const resume = (this.state.time === 0 || this.state.isOn) ?
+          null :
+          <button onClick={this.startTimer}>resume</button>;
           
         return(
           <div>
             <p>{this.state.time === 0 ? 'Start Project' : ms(this.state.time, { colonNotation: true })}</p>
             {start}
             {resume}
+            {done}
             {stop}
-            <button type="button" onClick={this.doneToday}>Done</button>
           </div>
         )
       }

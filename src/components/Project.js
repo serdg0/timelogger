@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Clock from './clock';
+import Clock from './Clock';
 import TimeList from '../containers/TimeList';
 import { format } from 'date-fns';
 

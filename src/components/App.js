@@ -8,6 +8,7 @@ import ProjectList from '../containers/ProjectList';
 import SigninForm from '../containers/Signin';
 import SignupForm from '../containers/Signup';
 import ProjectForm from '../containers/ProjectForm';
+import Totals from '../containers/Totals';
 import { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject } from '../actions/index';
 
 
@@ -19,6 +20,7 @@ const App = props => {
       <SigninForm login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} />
       <Link to="/signup">Sign Up</Link>
       <ProjectForm add={addProjectAction} token={token} />
+      <Totals projects={projects} />
       <ProjectList clock={addClockToProject} token={token} projects={projects} remove={removeProjectAction} />
 
       <Switch>
@@ -38,7 +40,12 @@ const mapStateToProps = state =>({
   token: state.token,
 })
 const store = createStore(rootReducer, applyMiddleware(logger));
-const Container = connect(mapStateToProps, {loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject})(App);
+const Container = connect(mapStateToProps, { loginAction,
+  setAuthAction, 
+  addProjectAction, 
+  removeProjectAction, 
+  getProjectsAction, 
+  addClockToProject})(App);
 
 const AppWrap = () => {
   return (
