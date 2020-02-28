@@ -36,10 +36,10 @@ const addClockToProject = clock => ({
 });
 
 export {
-  loginAction, 
-  setAuthAction, 
-  addProjectAction, 
-  removeProjectAction, 
-  getProjectsAction, 
+  loginAction,
+  setAuthAction,
+  addProjectAction,
+  removeProjectAction,
+  getProjectsAction,
   addClockToProject,
 };

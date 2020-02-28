@@ -8,7 +8,7 @@ import ProjectList from '../containers/ProjectList';
 import SigninForm from '../containers/Signin';
 import SignupForm from '../containers/Signup';
 import ProjectForm from '../containers/ProjectForm';
-import Totals from '../containers/Totals';
+import Totals from '../containers/TotalsTracker';
 import { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject } from '../actions/index';
 
 
@@ -16,7 +16,7 @@ const App = props => {
   const { token, projects, setAuthAction, loginAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject } = props;
   return (
     <Router>
-    <div>
+
       <SigninForm login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} />
       <Link to="/signup">Sign Up</Link>
       <ProjectForm add={addProjectAction} token={token} />
@@ -28,12 +28,11 @@ const App = props => {
           <SignupForm login={loginAction} tokenize={setAuthAction} />
         </Route>
       </Switch>
-    </div>
+
     </Router>
   );
 }
 
-//          REDUX
 const mapStateToProps = state =>({
   logged: state.logged,
   projects: state.projects,

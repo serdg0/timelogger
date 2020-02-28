@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ms from 'pretty-ms';
 import axios from 'axios';
 import { format } from 'date-fns';
+import { numbers } from '../style/style';
 
 class Clock extends Component {
     constructor(props){
@@ -73,7 +74,7 @@ class Clock extends Component {
           
         return(
           <div>
-            <p>{this.state.time === 0 ? 'Start Project' : ms(this.state.time, { colonNotation: true })}</p>
+            <p style={numbers}>{this.state.time === 0 ? 'Start Work' : ms(this.state.time, { colonNotation: true })}</p>
             {start}
             {resume}
             {done}
