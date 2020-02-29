@@ -34,11 +34,23 @@ class SignupForm extends Component {
 
     render(){
         return(
-            <form>
-                <input onChange={this.handleChange} name="name"></input>
-                <input onChange={this.handleChange} name="email" type="email"></input>
-                <input onChange={this.handleChange} name="password" type="password"></input>
-                <input onChange={this.handleChange} name="passwordConfirmation" type="password"></input>
+            <form className='center'>
+                <div className='form-group'>
+                    <label for='name'>Name</label>
+                    <input id='name' className='form-control' placeholder='Enter name' onChange={this.handleChange} name="name"></input>
+                </div>
+                <div className='form-group'>
+                    <label for='email'>Email</label>
+                    <input id='email' className='form-control' placeholder='Enter email' onChange={this.handleChange} name="email" type="email"></input>
+                </div>
+                <div className='form-group'>
+                    <label for='password'>Password</label>
+                    <input id='password' className='form-control' placeholder='Enter password' onChange={this.handleChange} name="password" type="password"></input>
+                </div>
+                <div className='form-group'>
+                    <label for='passCon'>Password Confirmation</label>
+                    <input for='passCon' className='form-control' placeholder='Confirm password' onChange={this.handleChange} name="passwordConfirmation" type="password"></input>
+                </div>
                 <button className='btn btn-color' onClick={this.handleSubmit} type="button">Sign Up</button>
             </form>
         )

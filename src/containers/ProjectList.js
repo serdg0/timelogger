@@ -17,11 +17,12 @@ const ProjectList = props => {
     )
     const logout= () => reset();
     return (
-        <div>
-            <Total projects={projects} />
-            <Link to='signin'><button className='btn btn-danger' onClick={() => logout()}>Log Out</button></Link>
-            <ProjectForm add={add} token={token} />
+        <div className='center'>
+            
+            <Link to='signin'><button className='btn btn-link blue' onClick={() => logout()}>Log Out</button></Link>
             <h3 className='header'>Projects</h3>
+            <small><Total projects={projects} /></small>
+            <Link to='newproject'>New Project</Link>
             <div>
                 {display}
             </div>

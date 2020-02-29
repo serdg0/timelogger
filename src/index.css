@@ -31,6 +31,9 @@ a {
   font-family: 'NeueBold';
   color: #67899C;
 }
+.blue {
+  color: #67899C !important;
+}
 
 .btn-color {
   font-family: 'NeueLight';

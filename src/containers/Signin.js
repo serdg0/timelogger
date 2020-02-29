@@ -40,9 +40,15 @@ class SigninForm extends Component {
         const { token } = this.props;
         const renderProjs = token === '' ? null : <Redirect from='/signin' to='projects' />;
         return (
-            <form>
-                <input onChange={this.changeHandler} name="email" type="email" placeholder="Email"></input>
-                <input onChange={this.changeHandler} name="password" type="password" placeholder="Password"></input>
+            <form className='center'>
+                <div className='form-group'>
+                    <label for='signMail'>Email</label>
+                    <input id='signMail' className='form-control' onChange={this.changeHandler} name="email" type="email" placeholder="Enter email"></input>
+                </div>
+                <div className='form-group'>
+                    <label for='signPass'>Password</label>
+                    <input id='signPass' className='form-control' onChange={this.changeHandler} name="password" type="password" placeholder="Password"></input>
+                </div>
                 <button onClick={this.loginHandler} type="button" className='btn btn-color'>Log In</button> 
                 {renderProjs}
             </form>

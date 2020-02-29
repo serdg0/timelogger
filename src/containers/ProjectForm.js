@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class ProjectForm extends Component {
     constructor(props) {
@@ -34,8 +35,11 @@ class ProjectForm extends Component {
         
         return(
             <form>
-                <input value={this.state.title} onChange={this.changeHandler} name="title" placeholder="Title" type="text"></input>
-                <button onClick={this.handleClick} type="button" className='btn btn-color'>Add Project</button>
+                <div className='form-group'>
+                    <label className='header' for='addProject'>New Project</label>
+                    <input id='addProject' className='form-control' value={this.state.title} onChange={this.changeHandler} name="title" placeholder="Project title" type="text"></input>
+                </div>
+                <Link to='projects'><button onClick={this.handleClick} type="button" className='btn btn-color'>Add Project</button></Link>
             </form>
         )
     }
