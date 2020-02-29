@@ -35,7 +35,7 @@ class ProjectForm extends Component {
         return(
             <form>
                 <input value={this.state.title} onChange={this.changeHandler} name="title" placeholder="Title" type="text"></input>
-                <button onClick={this.handleClick} type="button">Add Project</button>
+                <button onClick={this.handleClick} type="button" className='btn btn-color'>Add Project</button>
             </form>
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class SigninForm extends Component {
     constructor(props) {
@@ -36,11 +37,14 @@ class SigninForm extends Component {
     }
 
     render() {
+        const { token } = this.props;
+        const renderProjs = token === '' ? null : <Redirect from='/signin' to='projects' />;
         return (
             <form>
                 <input onChange={this.changeHandler} name="email" type="email" placeholder="Email"></input>
                 <input onChange={this.changeHandler} name="password" type="password" placeholder="Password"></input>
-                <button onClick={this.loginHandler} type="button">Log In</button>
+                <button onClick={this.loginHandler} type="button" className='btn btn-color'>Log In</button> 
+                {renderProjs}
             </form>
         )
     }

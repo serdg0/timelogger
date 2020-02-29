@@ -59,18 +59,18 @@ class Clock extends Component {
 
       render() {
         const start = (this.state.time === 0) ?
-          <button onClick={this.startTimer}>start</button> :
+          <button className='btn btn-color' onClick={this.startTimer}>Start</button> :
           null;
         const stop = (this.state.time === 0 || !this.state.isOn) ?
           null :
-          <button onClick={this.stopTimer}>stop</button>;
+          <button className='btn btn-color' onClick={this.stopTimer}>Stop</button>;
         
         const done = (this.state.time === 0 || this.state.isOn) ?
           null :
-          <button type="button" onClick={this.doneToday}>Done</button>;
+          <button className='btn btn-color' type="button" onClick={this.doneToday}>Done</button>;
         const resume = (this.state.time === 0 || this.state.isOn) ?
           null :
-          <button onClick={this.startTimer}>resume</button>;
+          <button className='btn btn-color' onClick={this.startTimer}>Resume</button>;
           
         return(
           <div>

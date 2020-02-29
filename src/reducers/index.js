@@ -3,10 +3,20 @@ import ProjectsReducer from './projects';
 import loginReducer from './login';
 import tokenReducer from './token';
 
-const rootReducer = combineReducers({
+const RESET = 'RESET';
+
+const appReducer = combineReducers({
   projects: ProjectsReducer,
   logged: loginReducer,
   token: tokenReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === RESET) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+}
 
 export default rootReducer;

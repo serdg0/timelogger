@@ -2,34 +2,34 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import logger from 'redux-logger';
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import rootReducer from '../reducers/index';
-import ProjectList from '../containers/ProjectList';
+import {ProjectList, ProjectsSwitch} from '../containers/ProjectList';
 import SigninForm from '../containers/Signin';
 import SignupForm from '../containers/Signup';
-import ProjectForm from '../containers/ProjectForm';
-import Totals from '../containers/TotalsTracker';
-import { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject } from '../actions/index';
+import { loginAction, setAuthAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject, resetAction } from '../actions/index';
+import { Redirect, Route, Link, Switch } from 'react-router-dom';
 
 
 const App = props => {
-  const { token, projects, setAuthAction, loginAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject } = props;
-  return (
-    <Router>
-
+  const { token, projects, setAuthAction, loginAction, addProjectAction, removeProjectAction, getProjectsAction, addClockToProject, resetAction } = props;
+  /*
       <SigninForm login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} />
-      <Link to="/signup">Sign Up</Link>
-      <ProjectForm add={addProjectAction} token={token} />
-      <Totals projects={projects} />
+      <SignupForm login={loginAction} tokenize={setAuthAction} />
+      <Totals projects={projects} />  
       <ProjectList clock={addClockToProject} token={token} projects={projects} remove={removeProjectAction} />
-
+  */
+  const displaySignup = token === '' ? <Link to="/signup">Sign Up</Link> : null;
+  return (
+    <div>
+      <Redirect exact from="/" to='/signin' />
       <Switch>
-        <Route path="/signup">
-          <SignupForm login={loginAction} tokenize={setAuthAction} />
-        </Route>
+        <Route path='/signin' render={(routerProps) => <SigninForm token={token} login={loginAction} tokenize={setAuthAction} retrieve={getProjectsAction} {...routerProps} />} />
+        <Route path='/projects' render={(routerProps) => <ProjectsSwitch reset={resetAction} retrieve={getProjectsAction} tokenize={setAuthAction} clock={addClockToProject} token={token} projects={projects} add={addProjectAction} remove={removeProjectAction} {...routerProps} />} />
+        <Route path='/signup' render={(routerProps) => <SignupForm login={loginAction} tokenize={setAuthAction} {...routerProps} />} />
       </Switch>
-
-    </Router>
+      {displaySignup}
+    </div>
+// SignIn or Signup -> ProjectList -> Project -> Clock & TimeList
   );
 }
 
@@ -40,11 +40,12 @@ const mapStateToProps = state =>({
 })
 const store = createStore(rootReducer, applyMiddleware(logger));
 const Container = connect(mapStateToProps, { loginAction,
-  setAuthAction, 
-  addProjectAction, 
-  removeProjectAction, 
+  setAuthAction,
+  addProjectAction,
+  removeProjectAction,
   getProjectsAction, 
-  addClockToProject})(App);
+  addClockToProject,
+  resetAction})(App);
 
 const AppWrap = () => {
   return (

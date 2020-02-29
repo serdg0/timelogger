@@ -39,7 +39,7 @@ class SignupForm extends Component {
                 <input onChange={this.handleChange} name="email" type="email"></input>
                 <input onChange={this.handleChange} name="password" type="password"></input>
                 <input onChange={this.handleChange} name="passwordConfirmation" type="password"></input>
-                <button onClick={this.handleSubmit} type="button">Sign Up</button>
+                <button className='btn btn-color' onClick={this.handleSubmit} type="button">Sign Up</button>
             </form>
         )
     }

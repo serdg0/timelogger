@@ -14,3 +14,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  text-decoration: none;
+  color: #67899C;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-family: 'NeueBold';
+  color: #67899C;
+}
+
+.btn-color {
+  font-family: 'NeueLight';
+  color: #67899C !important;
+  background-color: #ADDC91 !important;
+}
