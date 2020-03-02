@@ -34,9 +34,18 @@ a {
 .blue {
   color: #67899C !important;
 }
+.clock {
+  height: 300px;
+}
 
 .btn-color {
   font-family: 'NeueLight';
   color: #67899C !important;
   background-color: #ADDC91 !important;
+}
+
+.numbers {
+  font-family: 'NeueBold';
+  color: #62b5e5;
+  font-size: xx-large;
 }

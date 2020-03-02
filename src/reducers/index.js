@@ -13,10 +13,10 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === RESET) {
-    state = undefined;
+    state = undefined; // eslint-disable-line
   }
 
   return appReducer(state, action);
-}
+};
 
 export default rootReducer;

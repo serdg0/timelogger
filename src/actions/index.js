@@ -4,7 +4,7 @@ const ADD = 'ADD';
 const REMOVE = 'REMOVE';
 const RETRIEVE = 'RETRIEVE';
 const ADDCLOCK = 'ADDCLOCK';
-const RESET = 'RESET'
+const RESET = 'RESET';
 
 const loginAction = status => ({
   type: LOGIN,
@@ -37,8 +37,8 @@ const addClockToProject = clock => ({
 });
 
 const resetAction = () => ({
-  type: RESET
-})
+  type: RESET,
+});
 
 export {
   loginAction,

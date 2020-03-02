@@ -1,87 +1,99 @@
 import React, { Component } from 'react';
 import ms from 'pretty-ms';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { format } from 'date-fns';
-import { numbers } from '../style/style';
 
 class Clock extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          time: 0,
-          isOn: false,
-          start: 0,
-          id: this.props.id,
-          date: '',
-        }
-        this.startTimer = this.startTimer.bind(this)
-        this.stopTimer = this.stopTimer.bind(this)
-        this.doneToday = this.doneToday.bind(this);
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: 0,
+      isOn: false,
+      start: 0,
+      date: '',
+    };
+    this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.doneToday = this.doneToday.bind(this);
+  }
 
-      startTimer() {
-        let date = format(new Date(), 'PP');
-        this.setState({
-          time: this.state.time,
-          start: Date.now() - this.state.time,
-          isOn: true,
-          date: date
-        })
-        this.timer = setInterval(() => this.setState({
-          time: Date.now() - this.state.start
-        }), 1000);
-      }
+  startTimer() {
+    const date = format(new Date(), 'PP');
+    this.setState(state => {
+      const { time } = state;
+      return {
+        time,
+        start: Date.now() - time,
+        isOn: true,
+        date,
+      };
+    });
+    this.timer = setInterval(() => this.setState(state => {
+      const { start } = state;
+      return {
+        time: Date.now() - start,
+      };
+    }), 1000);
+  }
 
-      stopTimer() {
-        this.setState({isOn: false});
-        clearInterval(this.timer);
-      }
+  stopTimer() {
+    this.setState({ isOn: false });
+    clearInterval(this.timer);
+  }
 
-      doneToday() {
-          const { clock, token, id } = this.props;
-          const { date, time } = this.state;
-          if (date === '') { return false };
-          axios.post(`http://localhost:3001/todos/${id}/items`, null, { params: {time: time, date: date}, headers: {Authorization: token}})
-          .then(response => {
-            const { data: { items } } = response;
-            const time = items[items.length - 1].time;
-            const date = items[items.length - 1].date;
-            clock({
-              time: time,
-              date: date,
-              id: id,
-            });
-          }).catch(error => console.log(error));
-          this.setState({
-            time: 0,
-          })
-      }
+  doneToday() {
+    const { clock, token, id } = this.props;
+    const { date, time } = this.state;
+    if (date === '') { return false; }
+    axios.post(`https://hidden-ocean-49877.herokuapp.com/todos/${id}/items`, null, { params: { time, date }, headers: { Authorization: token } })
+      .then(response => {
+        const { data: { items } } = response;
+        const { time } = items[items.length - 1];
+        const { date } = items[items.length - 1];
+        clock({
+          time,
+          date,
+          id,
+        });
+      }).catch(() => false);
+    return this.setState({
+      time: 0,
+    });
+  }
 
-      render() {
-        const start = (this.state.time === 0) ?
-          <button className='btn btn-color' onClick={this.startTimer}>Start</button> :
-          null;
-        const stop = (this.state.time === 0 || !this.state.isOn) ?
-          null :
-          <button className='btn btn-color' onClick={this.stopTimer}>Stop</button>;
-        
-        const done = (this.state.time === 0 || this.state.isOn) ?
-          null :
-          <button className='btn btn-color' type="button" onClick={this.doneToday}>Done</button>;
-        const resume = (this.state.time === 0 || this.state.isOn) ?
-          null :
-          <button className='btn btn-color' onClick={this.startTimer}>Resume</button>;
-          
-        return(
-          <div>
-            <p style={numbers}>{this.state.time === 0 ? 'Start Work' : ms(this.state.time, { colonNotation: true })}</p>
-            {start}
-            {resume}
-            {done}
-            {stop}
-          </div>
-        )
-      }
+  render() {
+    const { time, isOn } = this.state;
+    const start = (time === 0)
+      ? <button type="button" className="btn btn-color" onClick={this.startTimer}>Start</button>
+      : null;
+    const stop = (time === 0 || !isOn)
+      ? null
+      : <button type="button" className="btn btn-color" onClick={this.stopTimer}>Stop</button>;
+
+    const done = (time === 0 || isOn)
+      ? null
+      : <button type="button" className="btn btn-link btn-sm" onClick={this.doneToday}>Done</button>;
+    const resume = (time === 0 || isOn)
+      ? null
+      : <button type="button" className="btn btn-link btn-sm" onClick={this.startTimer}>Resume</button>;
+
+    return (
+      <div className="clock center">
+        <p className="numbers">{time === 0 ? 'Start Work' : ms(time, { colonNotation: true })}</p>
+        {start}
+        {resume}
+        {done}
+        {stop}
+      </div>
+    );
+  }
 }
+
+Clock.propTypes = {
+  id: PropTypes.number.isRequired,
+  clock: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+};
 
 export default Clock;

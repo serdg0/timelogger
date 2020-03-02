@@ -2,7 +2,6 @@ const ADD = 'ADD';
 const REMOVE = 'REMOVE';
 const RETRIEVE = 'RETRIEVE';
 const ADDCLOCK = 'ADDCLOCK';
-const RESET = 'RESET';
 
 const ProjectsReducer = (state = [], action) => {
   switch (action.type) {
