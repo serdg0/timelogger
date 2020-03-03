@@ -46,7 +46,7 @@ class Clock extends Component {
     const { clock, token, id } = this.props;
     const { date, time } = this.state;
     if (date === '') { return false; }
-    axios.post(`https://hidden-ocean-49877.herokuapp.com/todos/${id}/items`, null, { params: { time, date }, headers: { Authorization: token } })
+    axios.post(`https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/todos/${id}/items`, null, { params: { time, date }, headers: { Authorization: token } })
       .then(response => {
         const { data: { items } } = response;
         const { time } = items[items.length - 1];

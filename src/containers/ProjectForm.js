@@ -23,7 +23,7 @@ class ProjectForm extends Component {
   handleClick() {
     const { add, token } = this.props;
     const { title } = this.state;
-    axios.post('https://hidden-ocean-49877.herokuapp.com/todos', null, { params: { title }, headers: { Authorization: token } })
+    axios.post('https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/todos', null, { params: { title }, headers: { Authorization: token } })
       .then(response => {
         add(response.data);
         this.setState({

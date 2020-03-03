@@ -24,7 +24,7 @@ class SigninForm extends Component {
   loginHandler() {
     const { email, password } = this.state;
     const { login, tokenize, retrieve } = this.props;
-    axios.post('https://hidden-ocean-49877.herokuapp.com/auth/login', {
+    axios.post('https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/auth/login', {
       withCredentials: true,
       email,
       password,
@@ -33,7 +33,7 @@ class SigninForm extends Component {
         const token = response.data.auth_token;
         login(true);
         tokenize(token);
-        axios.get('https://hidden-ocean-49877.herokuapp.com/todos', { headers: { Authorization: token } })
+        axios.get('https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/todos', { headers: { Authorization: token } })
           .then(projects => {
             retrieve(projects.data);
           }).catch(() => false);
