@@ -7,11 +7,19 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "date-fns": "^2.10.0",
+    "lodash.groupby": "^4.6.0",
+    "lodash.mapvalues": "^4.6.0",
+    "lodash.sortby": "^4.7.0",
+    "pretty-ms": "^6.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
+    "react-router-prop-types": "^1.0.4",
     "react-scripts": "3.4.0",
+    "react-spring": "^8.0.27",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6"
   },
@@ -35,5 +43,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0"
   }
 }

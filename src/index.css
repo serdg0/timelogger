@@ -1,13 +1,51 @@
+@font-face {
+  font-family: 'NeueLight';
+  src: local('NeueLight'), url(./fonts/HelveticaNeue\ Light.ttf);
+}
+
+@font-face {
+  font-family: 'NeueBold';
+  src: local('NeueBold'), url(./fonts/FontsFree-Net-HelveticaNeueBold.ttf);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'NeueLight';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+  color: #67899C;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-family: 'NeueBold';
+  color: #67899C;
+}
+.blue {
+  color: #67899C !important;
+}
+.clock {
+  height: 300px;
+}
+
+.btn-color {
+  font-family: 'NeueLight';
+  color: #67899C !important;
+  background-color: #ADDC91 !important;
+}
+
+.numbers {
+  font-family: 'NeueBold';
+  color: #62b5e5;
+  font-size: xx-large;
 }
