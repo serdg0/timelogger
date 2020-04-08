@@ -1,7 +1,6 @@
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
-import logger from 'redux-logger';
 import {
   Redirect, Route, Switch,
 } from 'react-router-dom';
@@ -52,7 +51,7 @@ const mapStateToProps = state => ({
   projects: state.projects,
   token: state.token,
 });
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer);
 const Container = connect(mapStateToProps, {
   loginAction,
   setAuthAction,
