@@ -35,7 +35,7 @@ Feel free to check the issues page.
 Some improvements are:
 - Reduce the number of api calls to 1.
 - Improve UI/UX
-- Deleting the neccesity of passing the password as state.
+- Delete the neccesity of passing the password as state.
 
 ## Show your support
 Give a star ⭐️ if you like this project!
