@@ -1,4 +1,6 @@
 # Time Logger
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b8149862-6396-49c6-ae2e-cac7600bdaa8/deploy-status)](https://app.netlify.com/sites/timelogger/deploys)
+
 An app for tracking time for multiple activities. The purpose of the entire project is to work with a full-stack ( ruby on rails and react).
 
 ![timelogger](https://user-images.githubusercontent.com/49207642/78930752-3d318900-7a6a-11ea-8aa5-0310affd7727.png)
@@ -33,7 +35,6 @@ Contributions, issues and feature requests are welcome!
 Feel free to check the issues page.
 
 Some improvements are:
-- Reduce the number of api calls to 1.
 - Improve UI/UX
 - Delete the neccesity of passing the password as state.
 
