@@ -28,7 +28,7 @@ class SignupForm extends Component {
       name, email, password, passwordConfirmation,
     } = this.state;
     const { login, tokenize } = this.props;
-    axios.post('https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/signup', {
+    axios.post('https://hidden-ocean-49877.herokuapp.com/signup', {
       name, email, password, password_confirmation: passwordConfirmation,
     })
       .then(response => {

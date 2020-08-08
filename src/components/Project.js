@@ -18,7 +18,7 @@ const Project = props => {
   const creation = format(new Date(createdAt), 'PPPP');
 
   const handleDelete = () => {
-    axios.delete(`https://cors-anywhere.herokuapp.com/https://hidden-ocean-49877.herokuapp.com/todos/${id}`, { data: { id }, headers: { Authorization: token } })
+    axios.delete(`https://hidden-ocean-49877.herokuapp.com/todos/${id}`, { data: { id }, headers: { Authorization: token } })
       .then(() => {
         remove(project);
       }).catch(() => false);
