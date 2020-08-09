@@ -24,7 +24,7 @@ class SigninForm extends Component {
   loginHandler() {
     const { email, password } = this.state;
     const { login, tokenize, retrieve } = this.props;
-    axios.post('https://hidden-ocean-49877.herokuapp.com/signin', {
+    axios.post('https://hidden-ocean-49877.herokuapp.com/auth/login', {
       withCredentials: true,
       email,
       password,
