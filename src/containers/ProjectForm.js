@@ -25,6 +25,13 @@ class ProjectForm extends Component {
     });
   }
 
+  boolHandler(event) {
+    const { target: { name, value } } = event;
+    this.setState({
+      [name]: !value,
+    })
+  }
+
   handleClick() {
     const { add, token } = this.props;
     const { title, moneyPerHour, deadline, isPaid } = this.state;
@@ -40,13 +47,14 @@ class ProjectForm extends Component {
     return (
       <form>
         <div className="form-group">
-          <label className="header" htmlFor="addProject">
-            New Project
-            <input id="addProject" className="form-control" value={title} onChange={this.changeHandler} name="title" placeholder="Project title" type="text" />
-            <input id="addProject" className="form-control" value={moneyPerHour} onChange={this.changeHandler} name="moneyPerHour" type="number" />
-            <input id="addProject" className="form-control" value={isPaid} onChange={this.changeHandler} name="isPaid" placeholder="Project title" type="checkbox" />
-            <input id="addProject" className="form-control" value={deadline} onChange={this.changeHandler} name="deadline" placeholder="Project title" type="date" />
-          </label>
+            <label className="header" htmlFor="title" value="Title:" />
+            <input id="title" name="title" className="form-control" value={title} onChange={this.changeHandler} placeholder="Project title" type="text" />
+            <label className="header" htmlFor="isPaid" value="Is it a paid project?" />
+            <input id="isPaid" name="isPaid" className="form-control" value={isPaid} onChange={this.boolHandler} type="checkbox" />
+            <label className="header" htmlFor="moneyPerHour" value="USD/hour rate:" />
+            <input id="moneyPerHour" name="moneyPerHour" className="form-control" value={moneyPerHour} onChange={this.changeHandler} type="number" />
+            <label className="header" htmlFor="deadline" value="Deadline:" />
+            <input id="deadline" name="deadline" className="form-control" value={deadline} onChange={this.changeHandler} type="date" />
         </div>
         <Link to="projects"><button onClick={this.handleClick} type="button" className="btn btn-color">Add Project</button></Link>
       </form>
